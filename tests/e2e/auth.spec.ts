@@ -1,20 +1,22 @@
 import {test, expect} from '@playwright/test';
 import { LoginPage } from '../../pages/LoginPage';
 import { RegisterPage } from '../../pages/RegisterPage';
+import { generateUserData } from '../../utils/faker';
 
 test('TC_001: Validate the flow of registering new user', async ({page}) =>
 {
+    const user= generateUserData();
     const registerPage=new RegisterPage(page);
     await registerPage.goto('/login');
-    await registerPage.signUp('Test User9289', 'testuserbla@gmail.com');
+    await registerPage.signUp(user.name, user.email);
     await expect(page.getByText('Enter Account Information')).toBeVisible();
     await expect(registerPage.name).toBeEditable();
-    await expect(registerPage.name).toHaveValue("Test User9289");
+    await expect(registerPage.name).toHaveValue(user.name);
     await expect(registerPage.email).toBeDisabled();
-    await registerPage.signUpForm('Mr.', 'abc@123', 3,10,1989,true,true,'Sunil', 'Rakesh','abc','ghi','uuu','45678','2223567123');
+    await registerPage.signUpForm('Mr.', user.password, user.dayOfBirth, user.monthOfBirth,user.yearOfBirth, true, false, user.firstName, user.lastName,user.address, user.state, user.city, user.zipCode, user.mobileNumber);
     await expect(registerPage.accountCreated).toBeVisible();
     await registerPage.continue.click();
-    await expect(page.getByText('Logged in as Test User9289')).toBeVisible();
+    await expect(page.getByText(`Logged in as ${user.name}`)).toBeVisible();
     await registerPage.deleteAccount();
     await expect(registerPage.accountDeletedMsg).toBeVisible();
     await registerPage.continue.click();

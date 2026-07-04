@@ -17,4 +17,5 @@ export const generateUserData = () => ({
     mobileNumber: faker.string.numeric(10),
     company: faker.company.name(),
     address2: faker.location.secondaryAddress(),
+
 });

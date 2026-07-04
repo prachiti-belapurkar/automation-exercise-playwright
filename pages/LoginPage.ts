@@ -7,6 +7,7 @@ export class LoginPage extends BasePage{
     readonly loginBtn: Locator;
     readonly loginError: Locator;
     readonly logOut: Locator;
+    readonly loginHeading: Locator;
 
     constructor (page: Page){
         
@@ -15,7 +16,8 @@ export class LoginPage extends BasePage{
     this.password= page.locator('form').filter({hasText: 'Login'}).getByPlaceholder('Password');
     this.loginBtn= page.locator('form').filter({hasText: 'Login'}).getByRole('button',{name: 'Login'});
     this.loginError= page.locator('form').filter({hasText: 'Your email or password is incorrect!'});
-    this.logOut=page.getByRole('link', {name: 'logout'});
+    this.logOut=page.getByRole('link', {name: 'Logout'});
+    this.loginHeading=page.getByRole('heading',{name:'Login to your account'});
     }
 
     async login(email: string, password: string)

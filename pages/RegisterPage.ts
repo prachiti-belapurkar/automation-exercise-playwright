@@ -31,6 +31,7 @@ export class RegisterPage extends BasePage
     readonly continue: Locator;
     readonly deleteAccountBtn: Locator;
     readonly accountDeletedMsg: Locator;
+    readonly emailExistsErrorMsg: Locator;
 
     constructor (page: Page)
     {
@@ -63,6 +64,7 @@ export class RegisterPage extends BasePage
         this.continue=page.locator('[data-qa="continue-button"]');
         this.deleteAccountBtn=page.getByRole('link', {name: 'Delete Account'});
         this.accountDeletedMsg=page.locator('[data-qa="account-deleted"]');
+        this.emailExistsErrorMsg=page.getByText('Email Address already exist!');
 
     }
 

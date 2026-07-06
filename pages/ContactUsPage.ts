@@ -33,6 +33,7 @@ export class ContactUsForm extends BasePage{
     {
         await this.contactName.fill(contactName);
         await this.contactEmail.fill(contactEmail);
+        await this.contactSubject.fill(contactSubject);
         await this.contactMessage.fill(contactMessage);
         this.page.on('dialog',dialog=> dialog.accept());
         await this.contactSubmitBtn.click();

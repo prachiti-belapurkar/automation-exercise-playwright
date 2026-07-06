@@ -13,3 +13,6 @@ node_modules/
 
 # Personal learning notes
 docs/
+
+# macOS system files
+.DS_Store

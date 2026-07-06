@@ -29,7 +29,7 @@ export class ContactUsForm extends BasePage{
 
     }
 
-    async ContactForm(contactName: string, contactEmail: string, contactMessage:string)
+    async ContactForm(contactName: string, contactEmail: string,contactSubject:string, contactMessage:string)
     {
         await this.contactName.fill(contactName);
         await this.contactEmail.fill(contactEmail);

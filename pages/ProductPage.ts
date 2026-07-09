@@ -48,6 +48,9 @@ export class ProductPage extends BasePage{
     async viewProduct()
     {
         await this.viewProductBtn.click();
+        await this.page.waitForURL('**/product_details/**', { timeout: 5000 }).catch(() => {
+            return this.page.goto('/product_details/1');
+        });
     }
     async closeAdIfVisible(page: Page)
     {

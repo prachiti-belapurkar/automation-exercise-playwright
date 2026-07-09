@@ -11,6 +11,10 @@ export class ProductPage extends BasePage{
     readonly productAvailability: Locator;
     readonly productCondition: Locator;
     readonly productBrand: Locator;
+    readonly searchProductTextbox: Locator;
+    readonly searchProductBtn: Locator;
+    readonly searchedProductsHeading: Locator;
+    readonly searchedProductCard: Locator;
 
 
     constructor(page: Page)
@@ -25,12 +29,20 @@ export class ProductPage extends BasePage{
         this.productAvailability=page.locator('.product-information p').filter({hasText: 'Availability:'});
         this.productCondition=page.locator('.product-information p').filter({hasText: 'Condition:'});
         this.productBrand=page.locator('.product-information p').filter({hasText: 'Brand:'});
+        this.searchProductTextbox=page.getByPlaceholder('Search Product');
+        this.searchProductBtn=page.locator('#submit_search');
+        this.searchedProductsHeading=page.getByRole('heading', {name:'Searched Products'});
+        this.searchedProductCard=page.locator('.productinfo').first();
+
 
     }
 
     async goToProduct()
     {
         await this.productBtn.click();
+        await this.page.waitForURL('**/products', { timeout: 5000 }).catch(() => {
+            return this.page.goto('/products');
+        });
     }
 
     async viewProduct()
@@ -43,6 +55,12 @@ export class ProductPage extends BasePage{
         if (await ad.isVisible()) {
             await page.goto('/products');
         }
+    }
+    async searchProduct(searchProductTextbox: string)
+    {
+        await this.searchProductTextbox.fill(searchProductTextbox);
+        await this.searchProductBtn.click();
+
     }
 
 }

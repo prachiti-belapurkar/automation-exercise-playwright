@@ -20,3 +20,17 @@ test('TC_001:Validate the flow of all products and product details page.', async
     await expect(productPage.productBrand).toBeVisible();
 }
 )
+test('TC_002: Validate the flow of searching a product', async({page})=>
+{
+    const productPage= new ProductPage(page);
+    await productPage.goto('/');
+    await expect(page).toHaveTitle('Automation Exercise');
+    await productPage.goToProduct();
+    await productPage.closeAdIfVisible(page);
+    await expect(page).toHaveURL('/products');
+    await expect(productPage.allProductHeading).toBeVisible();
+    await productPage.searchProduct('Top');
+    await expect(productPage.searchedProductsHeading).toBeVisible();
+    await expect(productPage.searchedProductCard).toBeVisible();
+
+})

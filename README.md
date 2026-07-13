@@ -1,5 +1,7 @@
 # Automation Exercise - Playwright Test Suite
 
+![CI](https://github.com/prachiti-belapurkar/automation-exercise-playwright/actions/workflows/playwright.yml/badge.svg)
+
 An end-to-end test automation project for [automationexercise.com](https://automationexercise.com) built using Playwright and TypeScript.
 
 ---
